@@ -1,10 +1,10 @@
 steps:
   # Build the container image
   - name: "gcr.io/cloud-builders/docker"
-    args: ["build", "-t", "eu.gcr.io/toplistbot-production/name", "."]
+    args: ["build", "-t", "eu.gcr.io/environment/name", "."]
   # Push the container image to Container Registry
   - name: "gcr.io/cloud-builders/docker"
-    args: ["push", "eu.gcr.io/toplistbot-production/name"]
+    args: ["push", "eu.gcr.io/environment/name"]
   # Deploy container image to Cloud Run
   - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
     entrypoint: gcloud
@@ -14,7 +14,7 @@ steps:
         "deploy",
         "name",
         "--image",
-        "eu.gcr.io/toplistbot-production/name",
+        "eu.gcr.io/environment/name",
         "--region",
         "europe-west1",
         "--platform",
@@ -32,4 +32,4 @@ steps:
         "2",
       ]
 images:
-  - eu.gcr.io/toplistbot-production/name
+  - eu.gcr.io/environment/name
