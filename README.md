@@ -15,7 +15,15 @@ Key Features:
 
 In this tutorial, we will guide you through the steps to run the ChatGPT Recommendation Tool with MongoDB Integration as a Flask application on port 80. We will be using Docker to containerize the application for easy deployment.
 
-Step 1: Build the Docker image
+Step 1: Fill in .env file
+Open the .env file and add the following variables
+
+```
+MONGO_CONNECTION_STRING=
+OPENAI_API_KEY=
+```
+
+Step 2: Build the Docker image
 Open your terminal and navigate to the project directory where the Dockerfile is located. Run the following command to build the Docker image:
 
 ```
@@ -24,7 +32,7 @@ docker build -t chatgpt-recommendation .
 
 This command will build the Docker image named "chatgpt-recommendation" based on the instructions defined in the Dockerfile.
 
-Step 2: Run the Docker container
+Step 3: Run the Docker container
 After successfully building the Docker image, you can run the container using the following command:
 
 ```
