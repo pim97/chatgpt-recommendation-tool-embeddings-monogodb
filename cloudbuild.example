@@ -1,0 +1,35 @@
+steps:
+  # Build the container image
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["build", "-t", "eu.gcr.io/toplistbot-production/name", "."]
+  # Push the container image to Container Registry
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", "eu.gcr.io/toplistbot-production/name"]
+  # Deploy container image to Cloud Run
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    entrypoint: gcloud
+    args:
+      [
+        "run",
+        "deploy",
+        "name",
+        "--image",
+        "eu.gcr.io/toplistbot-production/name",
+        "--region",
+        "europe-west1",
+        "--platform",
+        "managed",
+        "--allow-unauthenticated",
+        "--port",
+        "81",
+        "--concurrency",
+        "1000",
+        "--max-instances",
+        "1",
+        "--memory",
+        "256Mi",
+        "--cpu",
+        "2",
+      ]
+images:
+  - eu.gcr.io/toplistbot-production/name
